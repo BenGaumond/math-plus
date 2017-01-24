@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BenGaumond/math-plus.git"
+    "url": "git+https://github.com/BenZed/math-plus.git"
   },
   "keywords": [
     "math",
@@ -22,9 +22,9 @@
   "author": "Ben Gaumond",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/BenGaumond/math-plus/issues"
+    "url": "https://github.com/BenZed/math-plus/issues"
   },
-  "homepage": "https://github.com/BenGaumond/math-plus#readme",
+  "homepage": "https://github.com/BenZed/math-plus#readme",
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
