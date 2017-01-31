@@ -2,7 +2,7 @@
   "name": "math-plus",
   "version": "0.1.0",
   "description": "A math library with a Vector class and added methods.",
-  "main": "index.js",
+  "main": "lib",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rm -rf lib; mkdir lib; node_modules/.bin/babel src --out-dir lib",
