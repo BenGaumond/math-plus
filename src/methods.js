@@ -3,13 +3,13 @@
 // Spread from Math Object
 /******************************************************************************/
 
-const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos,
-  cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min,
-  pow, /*random,*/ round, sign, sin, sinh, sqrt, tan, tanh, trunc } = Math
+const { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil: _ceil, clz32, cos,
+  cosh, exp, expm1, floor: _floor, fround, hypot, imul, log, log10, log1p, log2, max, min,
+  pow, random: _random, round: _round, sign, sin, sinh, sqrt, tan, tanh, trunc } = Math
 
-export { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos,
-  cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min,
-  pow, /*random,*/ round, sign, sin, sinh, sqrt, tan, tanh, trunc }
+export { abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, clz32, cos,
+  cosh, exp, expm1, fround, hypot, imul, log, log10, log1p, log2, max, min,
+  pow, sign, sin, sinh, sqrt, tan, tanh, trunc }
 
 /******************************************************************************/
 // Custom Functions
@@ -27,19 +27,53 @@ export function clamp(num, min = 0, max = 1) {
 
 }
 
+export function isPrime(value) {
+
+  for(let i = 2; i < value; i++)
+    if(value % i === 0)
+      return false
+
+  return value > 1
+
+}
+
+export function* primes(...args) {
+
+  const [ min = 2, max = Infinity ] = args.length >= 2
+    ? args
+    : [2, ...args]
+
+  for (let i = min; i < max; i++)
+    if (isPrime(i))
+      yield i
+
+}
+
 /******************************************************************************/
 // Overridden functions
 /******************************************************************************/
 
-export function random(min, max, step) {
+export function random(min = 0, max = 1, place = 0) {
 
-  min = isFinite(min) ? min : 0
-  max = isFinite(max) ? max : 1
-  step = isFinite(step) ? step : 0
+  const value = _random() * (max - min) + min
 
-  const value = Math.random() * (max - min) + min
+  return round(value, place)
+}
 
-  return step !== 0
-    ? round(value / step) * step
-    : value
+export function round(value, place = 1) {
+
+  return place === 0 ? value : _round(value / place) * place
+
+}
+
+export function floor(value, place = 1) {
+
+  return place === 0 ? value : _floor(value / place) * place
+
+}
+
+export function ceil(value, place = 1) {
+
+  return place === 0 ? value : _ceil(value / place) * place
+
 }

@@ -10,7 +10,7 @@ import {
   cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min,
   pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc,
 
-  lerp, clamp
+  lerp, clamp, isPrime, primes
 
 } from './methods'
 
@@ -28,7 +28,7 @@ export {
   cosh, exp, expm1, floor, fround, hypot, imul, log, log10, log1p, log2, max, min,
   pow, random, round, sign, sin, sinh, sqrt, tan, tanh, trunc,
 
-  lerp, clamp,
+  lerp, clamp, isPrime, primes,
 
   Vector
 }
