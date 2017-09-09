@@ -37,6 +37,7 @@ ceil(109.10, 10) // ceil to the nearest 10 = 110
 floor(86.5, 100) // floor to the nearest 100 = 0
 ```
 
+
 The ```random()``` method is overridden to take up to three parameters:
 *min, max and place*.
 
@@ -90,6 +91,29 @@ const to10 = [...primes(9)] // [2,3,5,7,9]
 
 for (const prime of primes(50, 100))
   console.log(prime) //logs every prime between 50 and 100
+```
+
+# bind operator ``:``
+
+I don't know if you have heard of the bind operator, but I LOVE the bind operator.
+Read more here: https://babeljs.io/docs/plugins/transform-function-bind/
+Where-ever prudent, the overridden and custom methods allow numbers to be bound
+to them:
+
+```js
+
+// Bindable methods:
+import { round, ceil, floor, lerp, clamp, isPrime } from 'math-plus'
+
+10.4::round() //10
+5.15::floor(0.1) // 5.1
+6.625::ceil(0.25) // 6.75
+
+5::lerp(10, 0.5) // 7.5
+3::clamp() // 1
+
+5::isPrime() // true
+
 ```
 
 And a 2D ```Vector``` class, which is pretty fully featured.

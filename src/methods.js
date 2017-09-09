@@ -45,6 +45,7 @@ export function clamp (...args) {
 
 export function isPrime (value) {
 
+  // handles #::isPrime
   if (typeof this === 'number')
     value = this
 
@@ -56,24 +57,35 @@ export function isPrime (value) {
 
 }
 
-export function * primes (...args) {
+/* What the fuck is this? */
+// This is a way to circumvent the regeneratorRuntime bug when transpiling
+// generator functions
+function primesFactory () {
 
-  let min, max
+  return function * primes (...args) {
 
-  // If a single argument is provided, it is the max
-  if (args.length === 1) {
-    ([ max = Infinity ] = args)
-    min = 2
+    let min, max
 
-  // Otherwise we try to get the min and the max
-  } else
-    ([ min = 2, max = Infinity ] = args)
+    // If a single argument is provided, it is the max
+    if (args.length === 1) {
+      ([ max = Infinity ] = args)
+      min = 2
 
-  for (let i = min; i < max; i++)
-    if (isPrime(i))
-      yield i
+    // Otherwise we try to get the min and the max
+    } else
+      ([ min = 2, max = Infinity ] = args)
+
+    for (let i = min; i < max; i++)
+      if (isPrime(i))
+        yield i
+
+  }
 
 }
+
+const primes = primesFactory()
+
+export { primes }
 
 /******************************************************************************/
 // Overridden functions
