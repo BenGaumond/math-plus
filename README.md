@@ -39,12 +39,15 @@ floor(86.5, 100) // floor to the nearest 100 = 0
 
 
 The ```random()``` method is overridden to take up to three parameters:
-*min, max and place*.
+*min, max and seed*.
 
 ```js
 import { random } from 'math-plus'
 
-random(2, 5, 1/4) // random value between 2 and 5, rounded to the nearest 0.125
+random(2, 5) // random value between 2 and 5
+
+random(-10, 10, 1000) // Third argument acts as a seed, providing the same number
+
 ```
 
 
@@ -55,7 +58,7 @@ The ```lerp()``` method, which interpolates one value to another:
 ```js
 import { lerp } from 'math-plus'
 
-//lerp(from, to, interpolator)
+// lerp(from, to, interpolator)
 lerp(5, 10, 0.5) // 7.5
 lerp(2, 1, 0.5) // 1.5
 lerp(3, 6, 2) // 9
@@ -67,7 +70,7 @@ The ```clamp()``` method, which is self explanatory
 ```js
 import { clamp } from 'math-plus'
 
-//clamp(value, min = 0, max = 1)
+// clamp(value, min = 0, max = 1)
 clamp(2) // 1
 clamp(0, 1, 2) // 1
 ```
@@ -77,7 +80,7 @@ The ```isPrime()``` method, also self explanatory
 ```js
 import { isPrime } from 'math-plus'
 
-//isPrime(value)
+// isPrime(value)
 isPrime(5) // true
 isPrime(4) // false
 ```
@@ -93,7 +96,7 @@ for (const prime of primes(50, 100))
   console.log(prime) //logs every prime between 50 and 100
 ```
 
-# bind operator ``:``
+## Bindable Methods ``::``
 
 I don't know if you have heard of the bind operator, but I LOVE the bind operator.
 Read more here: https://babeljs.io/docs/plugins/transform-function-bind/
@@ -102,20 +105,15 @@ to them:
 
 ```js
 
-// Bindable methods:
-import { round, ceil, floor, lerp, clamp, isPrime } from 'math-plus'
+import { round, random } from 'math-plus'
 
 10.4::round() //10
-5.15::floor(0.1) // 5.1
-6.625::ceil(0.25) // 6.75
 
-5::lerp(10, 0.5) // 7.5
-3::clamp() // 1
+1000::random(-10, 10) // binding a value to random gives it a seed
 
-5::isPrime() // true
 
 ```
 
-And a 2D ```Vector``` class, which is pretty fully featured.
+List of all bindable methods:
 
-I will add further documentation as the package matures.
+``lerp``, ``clamp``, ``isPrime``, ``round``, ``floor``, ``ceil``, ``pow``, ``abs``, ``acos``, ``acosh``, ``asin``, ``asinh``, ``atan``, ``atanh``, ``cbrt``, ``clz32``, ``cos``, ``cosh``, ``exp``, ``expm1``, ``fround``, ``log``, ``log10``, ``log1p``, ``log2``, ``sign``, ``sin``, ``sinh``, ``sqrt``, ``tan``, ``tanh``, ``trunc``
