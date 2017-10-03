@@ -1,6 +1,6 @@
 {
   "name": "math-plus",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A math library with a Vector class and added methods.",
   "main": "lib",
   "scripts": {
