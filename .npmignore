@@ -2,3 +2,4 @@ src
 .babelrc
 .eslintignore
 .eslintrc.json
+playground.js

@@ -50,6 +50,31 @@ random(-10, 10, 1000) // Third argument acts as a seed, providing the same numbe
 
 ```
 
+`random` can also be used to return a random element from an array, string, or array-like.
+Min and max are treated as index ranges.
+```js
+import { random } from 'math-plus'
+
+const string = 'letters-are-cool'
+
+// Returns a letter between index 0 (min) and array.length(max) (non-inclusive)
+const randomChar = random(0, string.length, string)
+
+const array = [ 'one', 2, { three: 3 } ]
+// undefined as max will default to array.length
+const randomItem = random(0, undefined, array)
+
+// array-likes must have have number indexes and a length property
+const arrayLike = { 0: 'one', 1: 'two', 2: 'three', length: 3 }
+const randomArrayLikeItem = random(0, undefined, arrayLike)
+
+// iterables also work (Set, Map, any Object with Symbol.iterator)
+const iterable = new Set([1, 2, 3, 4])
+const randomIterable = random(0, undefined, iterable)
+
+```
+
+See the [Bindable Methods](#bindable-methods) section for a cleaner syntax for the `random` method.
 
 ## Added Methods
 
@@ -105,12 +130,19 @@ to them:
 
 ```js
 
-import { round, random } from 'math-plus'
+import { round, random, primes } from 'math-plus'
 
 10.4::round() //10
 
 1000::random(-10, 10) // binding a value to random gives it a seed
 
+// You can also bind arrays, iterables, array-likes or strings to the random method
+
+'string'::random() // random char
+[1,2,3,4]::random() // random item
+
+// primes isn't bindable, but it does return an iterator
+primes(1000)::random() // random prime number between 0 and 1000
 
 ```
 

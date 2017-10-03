@@ -86,21 +86,50 @@ export { primes }
 // Overridden functions
 /******************************************************************************/
 
-export function random (min = 0, max = 1, seed) {
+export function random (min = 0, max, various) {
+
+  // handles #::random()
+  let alt = typeof various === 'undefined' ? this : various
+  const altType = typeof alt
+
+  // determine if alt is a string, arraylike or iterable
+  const isString = altType === 'string'
+  const isObject = altType !== null && altType === 'object'
+  const isIterable = isObject && Symbol.iterator in alt
+  const isArrayLike = isObject && 'length' in alt
+
+  // Only convert to array if we have to
+  if (!isString && !isArrayLike && isIterable)
+    alt = [ ...alt ]
 
   let value
 
-  // handles #::random()
-  seed = typeof this === 'number' ? this : seed
+  // handle string or array-like
+  if (isString || isArrayLike || isIterable) {
+    max = max === undefined ? alt.length : max
 
-  if (typeof seed === 'number') {
-    value = _sin(seed) * 10000
-    value -= _floor(value)
-  } else
-    value = _random()
+    let index = random(min, max) // recursion!!
+    index = _floor(index)
 
-  return value * (max - min) + min
+    value = isString ? alt.charAt(index) : alt[index]
 
+  // handle numbers
+  } else {
+    max = max === undefined ? 1 : max
+
+    // handle alt as seed
+    if (altType === 'number') {
+      value = _sin(alt) * 10000
+      value -= _floor(value)
+
+    // handle no alt, just straight random number
+    } else
+      value = _random()
+
+    value *= (max - min) + min
+  }
+
+  return value
 }
 
 export function round (...args) {
