@@ -126,7 +126,8 @@ export function random (min = 0, max, various) {
     } else
       value = _random()
 
-    value *= (max - min) + min
+    value *= max - min
+    value += min
   }
 
   return value

@@ -8,10 +8,24 @@ describe('overridden methods', () => {
 
     this.timeout(5000)
 
-    it('creates random numbers between min and max value', () => {
+    it('creates random numbers between min negative and max positive value', () => {
       for (let i = 0; i < 100000; i++) {
-        const result = random(-5, 5)
-        assert(result >= -5 && result <= 5, `${result} out of range`)
+        const result = random(-50, 50)
+        assert(result >= -50 && result <= 50, `${result} out of range`)
+      }
+    })
+
+    it('creates random numbers between min positive and max positive value', () => {
+      for (let i = 0; i < 100000; i++) {
+        const result = random(50, 150)
+        assert(result >= 50 && result <= 150, `${result} out of range`)
+      }
+    })
+
+    it('creates random numbers between min negative and max negative value', () => {
+      for (let i = 0; i < 100000; i++) {
+        const result = random(-150, -50)
+        assert(result >= -150 && result <= -50, `${result} out of range`)
       }
     })
 
