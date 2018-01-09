@@ -231,6 +231,13 @@ class Vector {
     return new Vector(this.x, this.y)
   }
 
+  set (vector) {
+    this.x = vector.x
+    this.y = vector.y
+
+    return this
+  }
+
   equals (vector) {
 
     return vector instanceof Vector &&
