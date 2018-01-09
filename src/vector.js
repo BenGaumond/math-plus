@@ -2,7 +2,18 @@ import { lerp, cos, sin, sqrt, atan2 } from './methods'
 
 import { PI } from './constants'
 
-export default class Vector {
+/******************************************************************************/
+// Helper
+/******************************************************************************/
+
+function equalOrNaN (a, b) {
+  return a === b || (Number.isNaN(a) && Number.isNaN(b))
+}
+/******************************************************************************/
+// Main
+/******************************************************************************/
+
+class Vector {
 
   static get zero () {
     return new Vector(0, 0)
@@ -220,6 +231,14 @@ export default class Vector {
     return new Vector(this.x, this.y)
   }
 
+  equals (vector) {
+
+    return vector instanceof Vector &&
+        equalOrNaN(this.x, vector.x) &&
+        equalOrNaN(this.y, vector.y)
+
+  }
+
   toString () {
     return `[${this.x},${this.y} Vector]`
   }
@@ -230,3 +249,9 @@ export default class Vector {
   }
 
 }
+
+/******************************************************************************/
+// Exports
+/******************************************************************************/
+
+export default Vector
